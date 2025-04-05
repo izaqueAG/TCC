@@ -2,6 +2,8 @@ import cv2
 import timeit
 
 lista = []
+# Dicionario para armazenar os rostos detectados
+face_dict = {}
 
 # Função de redimensionamento
 def redim(img, largura):
@@ -28,6 +30,13 @@ def detectar_faces():
         frame_temp = frame.copy()
         for (x, y, lar, alt) in faces:
             cv2.rectangle(frame_temp, (x, y), (x + lar, y + alt), (0, 255, 255), 2)
+
+            # Recorta a face detectada
+            face_cut = frame[y:y+alt, x:x+lar]
+
+            #armazenar no dicionario
+            # face_dict[f"Usuario_{id_user}"] = face_cut
+            # id_user  += 1
 
         cv2.imshow('Detector de faces', redim(frame_temp, 640))
         if cv2.waitKey(1) & 0xFF == ord('s'):
