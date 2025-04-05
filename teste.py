@@ -19,7 +19,8 @@ def detectar_faces():
     while True:
         (sucesso, frame) = camera.read()
         if not sucesso:
-            break
+            frame = print('informe o caminho para a imagem: ')
+            
 
         frame = redim(frame, 320)
         frame_pb = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
